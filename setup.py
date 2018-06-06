@@ -194,14 +194,7 @@ def _write_lm_encodings(lm_data_shard_cfg, device):
     tokenized_dev_json_path=TOKENIZED_DEV_JSON_PATH,
     max_ans_len=MAX_ANS_LEN,
     max_ctx_len=MAX_CTX_LEN)
-  # DBG
-  # write_lm_data_shard(data, lm_data_shard_cfg, device)
-  for dataset in ['train', 'dev']:
-    for sequences in ['contexts', 'questions']:
-      for shard in [1,2,3,4]:
-        lm_data_shard_cfg = LmDataShardConfig(
-          dataset, sequences, payload='L1', num_shards=4, shard=shard)
-        write_lm_data_shard(data, lm_data_shard_cfg, device)
+  write_lm_data_shard(data, lm_data_shard_cfg, device)
 
 
 #######################################

@@ -74,9 +74,9 @@ class WrappedLm1bModel(object):
     self._targets = np.zeros([1, 1], np.int32)
     self._weights = np.ones([1, 1], np.float32)
     self._t_payload_mapping = {
-      'LM(emb)': 'all_embs',
-      'LM(L1)': 'lstm/lstm_0/control_dependency',
-      'LM(L2)': 'lstm/lstm_1/control_dependency'
+      'EMB': 'all_embs',
+      'L1': 'lstm/lstm_0/control_dependency',
+      'L2': 'lstm/lstm_1/control_dependency'
     }
 
 
@@ -130,10 +130,6 @@ def encode_paragraphs(lm_model, lm_data_shard_cfg, paragraphs, paragraphs_sent_l
 
   hs = np.zeros((num_total_tokens, LM1B_MODEL_HIDDEN_DIM), dtype=np.float32)
   lens = np.array(lens, dtype=np.int32)
-
-  # DBG
-  print('DUMMY Hs')
-  return hs, lens
 
   pos = 0
   for i, (originals, sent_lens) in enumerate(zip(paragraphs, paragraphs_sent_lens)):
