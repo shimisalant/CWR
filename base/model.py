@@ -127,7 +127,7 @@ class BaseModel(object):
     with open(filename, 'rb') as f:
       loaded = cPickle.load(f)
 
-    if type(loaded) is dict:  # before EMA, param_dict was dumped directly "cPickle.dump(param_dict)"
+    if type(loaded) is dict:
       assert not self._ema, 'Found only param_dict in file and not param_shadow_dict, and EMA is enabled'
       param_dict = loaded
       param_shadow_dict = None
@@ -145,7 +145,7 @@ class BaseModel(object):
           filename, param_names.difference(loaded_param_names),
           loaded_param_names.difference(param_names))
       if allow_mismatch:
-        assert not self._ema    # TODO
+        assert not self._ema
         logger.info(msg)
         param_dict = {param_name: param_dict[param_name] for param_name \
           in param_names.intersection(loaded_param_names)}

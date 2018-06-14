@@ -39,15 +39,15 @@ SquadDatasetVectorized = namedtuple('SquadDatasetVectorized', [
   'qtns',               # int32 (num questions, max question length)
   'qtn_lens',           # int32 (num questions,)
   'qtn_ctx_idxs',       # int32 (num questions,)      index of context of question
-  'qtn_ans_inds',       # int32 (num questions,)      indicator of whether question has a valid answer  # Note: for only_gold_snt this is always 1
+  'qtn_ans_inds',       # int32 (num questions,)      indicator of whether question has a valid answer
   'anss',               # int32 (num questions, 2)    we keep only first valid answer as (answer start word idx,
                         #                             answer end word idx), undefined for all invalid
 
   'ctx_originals',      # int32 (num contexts, max context length)
   'qtn_originals',      # int32 (num questions, max question length)
 
-  'ctx_wdp_seq_ids',    # int32 (num contexts, max context length)      # each token's suquential ner id int
-  'qtn_wdp_seq_ids',    # int32 (num questions, max question length)    # each token's suquential ner id int
+  'ctx_wdp_seq_ids',    # int32 (num contexts, max context length)      # each token's suquential word-type id int
+  'qtn_wdp_seq_ids',    # int32 (num questions, max question length)    # each token's suquential word-type id int
 ])
 
 TokenizedText = namedtuple('TokenizedText', [
@@ -55,7 +55,7 @@ TokenizedText = namedtuple('TokenizedText', [
   'originals',          # list of original tokens (may differ from parsed ones)
   'whitespace_afters',  # list of whitespace strings, each appears after corresponding original token in original text
   'sent_lens',          # list of sentence lengths
-  'ex_wdp_seq_ids'      # list int32: sequential word id
+  'ex_wdp_seq_ids'      # list int32: sequential word-type id
 ])
 
 SquadArticle = namedtuple('SquadArticle', [
@@ -65,16 +65,12 @@ SquadArticle = namedtuple('SquadArticle', [
 SquadContext = namedtuple('SquadContext', [
   'art_idx',
   'tokenized',          # TokenizedText of context's text
-  # We keep these indices for get_lm_data() in setup file, it needs to know what LM hs to extract when we train on subset of data.
   'original_idx',       # The sequential index of this context when reading raw input json.
 ])
 
 SquadQuestion = namedtuple('SquadQuestion', [
   'ctx_idx',            # The index of the SquadContext object in SquadDatasetTabular to which this question relates.
-
-  # We keep these indices for get_lm_data() in setup file, it needs to know what LM hs to extract when we train on subset of data.
   'original_idx',       # The sequential index of this question when reading raw input json.
-
   'qtn_id',
   'tokenized',          # TokenizedText of question's text
   'ans_texts',          # list of (possibly multiple) answer text strings

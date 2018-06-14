@@ -28,15 +28,10 @@ def gpu_int32(name, x_val, return_shared_var=False):
 
 
 def clip_sqrt(x):
-  # # DBG
-  # XXX
-  # #return tt.sqrt(tt.clip(x, 0.0, np.float32(1000000)))
   return tt.sqrt(tt.clip(x, 0.0, np.inf))
 
 
 def softmax_columns_with_mask(x, mask, allow_none=False):
-  #     assert x.ndim == 2
-  #     assert mask.ndim == 2
   # for numerical stability
   x *= mask
   x -= x.min(axis=0, keepdims=True)
@@ -137,12 +132,6 @@ def log_softmax_depths_with_mask(x, mask):
   return log_probs, probs
 
 
-
-
-
-
-
-
 def max_and_argmax_k(x, k):   # NO MASK HERE
   # x         (batch_size, max_p_len*max_ans_len)   needs to be non-negative (otherwise the zero we put in to zero out a max can get picked out as the new max)
   # k         int
@@ -191,10 +180,6 @@ def max_and_argmax_k_with_mask_for_non_negative(x, x_mask, k):
   maxs = tt.concatenate(maxs, axis=1)           # (batch_size, k)
   argmaxs = tt.concatenate(argmaxs, axis=1)     # (batch_size, k)
   return maxs, argmaxs
-
-
-
-
 
 
 def batched_indexing(x, idxs):

@@ -13,7 +13,6 @@
 $ python setup.py prepare-squad
 ```
 Downloads GloVe word embeddings and [Stanford CoreNLP](https://stanfordnlp.github.io/CoreNLP/)
-(download will be skipped if [zipped GloVe file](http://nlp.stanford.edu/data/glove.840B.300d.zip) is manually placed in `data` directory).
 Once downloaded, SQuAD's training and development sets will be pre-processed and tokenized.<br />
 
 
@@ -22,7 +21,7 @@ Once downloaded, SQuAD's training and development sets will be pre-processed and
 ```bash
 $ python setup.py prepare-lm
 ```
-Downloads the [pre-trained language model](https://github.com/tensorflow/models/tree/master/research/lm_1b) released along [1].
+Downloads the [pre-trained (TensorFlow) language model](https://github.com/tensorflow/models/tree/master/research/lm_1b) released along [1].
 
 
 #### Setup (3): Encoding SQuAD via the LM
@@ -77,6 +76,7 @@ Tested in the following environment:
 * Python 2.7.6
 * NVIDIA CUDA 8.0.44 and cuDNN 5.1.5
 * Theano 0.8.2
+* TensorFlow 0.11.0rc1
 * Matplotlib 1.3.1
 * Oracle JDK 8
 

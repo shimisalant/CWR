@@ -1,0 +1,11 @@
+*.pyc
+*.swp
+*.pkl
+*.bin
+*.hdf5
+*.npy
+data/*
+tokenizer/stanford-corenlp-full-2016-10-31*
+!data/train-v1.1.json
+!data/dev-v1.1.json
+!data/lm1b/altered-graph-2017-10-06.pbtxt
