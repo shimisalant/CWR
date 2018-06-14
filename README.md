@@ -12,7 +12,7 @@
 ```bash
 $ python setup.py prepare-squad
 ```
-Downloads GloVe word embeddings and [Stanford CoreNLP](https://stanfordnlp.github.io/CoreNLP/)
+Downloads GloVe word embeddings and [Stanford CoreNLP](https://stanfordnlp.github.io/CoreNLP/).
 Once downloaded, SQuAD's training and development sets will be pre-processed and tokenized.<br />
 
 
